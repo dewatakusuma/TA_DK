@@ -1,6 +1,7 @@
-<!-- Jquery Core Js -->
-<script src="{{ asset('/plugins/jquery/jquery.min.js') }}"></script>
 
+<!-- Core JQUERY -->
+<script src="{{ asset('/plugins/jquery/jquery.js') }}"></script>
+@yield('more-script')
 <!-- Bootstrap Core Js -->
 <script src="{{ asset('/plugins/bootstrap/js/bootstrap.js') }}"></script>
 
@@ -22,7 +23,6 @@
 <script src="{{ asset('/js/plugin/flot/jquery.flot.resize.min.js') }}"></script>
 <script src="{{ asset('/js/plugin/flot/jquery.flot.time.min.js') }}"></script>
 <script src="{{ asset('/js/plugin/flot/jquery.flot.tooltip.min.js') }}"></script> -->
-<script src="{{ asset('/js/plugin/flot/jquery.flot.js') }}"></script>
 
 <!-- Vector Maps Plugin: Vectormap engine, Vectormap language -->
 <script src="{{ asset('/js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>

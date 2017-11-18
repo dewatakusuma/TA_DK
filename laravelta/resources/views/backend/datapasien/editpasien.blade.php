@@ -55,9 +55,10 @@
                 <label>Usia</label>
                 <input type="text" class="form-control" name="usia" placeholder="Usia" value="{{$datapasien->usia}}" required/>
             </div>
-       
+                <input type="text" value="{{ Auth::user()->id}}" class="form-control" name="id_dokter" required style="display:none"/> 
             <div >
                <input class="btn main-color-bg btn-lg" type="submit" value="Save">
+
             </div>
              <input type="text" value="{{ $datapasien->id }}" class="form-control" name="id" required style="display:none"/>
             </form>

@@ -4,7 +4,11 @@
         <!-- User Info -->
         <div class="user-info">
             <div class="image">
-                <img src="/images/user.png" width="48" height="48" alt="User" />
+                @if (empty(Auth::user()->gambar))
+                <img src="{{asset('images/user.png')}}" width="55" height="55" alt="User" />
+                @else
+                <img src="{{ asset('storage/images/foto_dokter/'.Auth::user()->gambar) }}" width="55" height="55" alt="User" />
+                @endif
             </div>
             <div class="info-container">
                 <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</div>
@@ -42,15 +46,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('backend/indexpasien') }}">
+                    <a href="{{ url('backend/profil/indexprofil/'.Auth::user()->id) }}">
                         <i class="material-icons">book</i>
-                        <span>Data Pasien</span>
+                        <span>Profil</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/subMateri">
+                    <a href="{{ url('backend/indexpasien/'.Auth::user()->id) }}">
                         <i class="material-icons">description</i>
-                        <span>Monitoring Pasien</span>
+                        <span>Data Pasien</span>
                     </a>
                 </li>
                 <!-- <li>

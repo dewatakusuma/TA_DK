@@ -55,10 +55,12 @@
                 <label>Usia</label>
                 <input type="text" class="form-control" name="usia" placeholder="Usia" required/>
             </div>
-       
+            <input type="text" value="{{ Auth::user()->id}}" class="form-control" name="id_dokter" required style="display:none"/> 
+            <!-- nilai yg di id user otomatis di genrate jadi id_dokter -->
             <div >
                <input class="btn main-color-bg btn-lg" type="submit" value="Save">
             </div>
+
             </form>
         </div>
     </div>

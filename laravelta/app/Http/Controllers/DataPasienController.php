@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\DataPasien;
+use App\Models\User;
 
 class DataPasienController extends Controller
 {
@@ -12,9 +13,10 @@ class DataPasienController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index($id)
     {
-    	$datapasien=DataPasien::all();
+    	$datapasien = \DB::table('datapasien')
+        ->where('id_dokter',$id)->get();
     	// dd($datapasien);
        return view('backend.datapasien.indexpasien',compact('datapasien')); //'datapasien' ->ke view untuk nampilin
     }
@@ -35,16 +37,17 @@ class DataPasienController extends Controller
             
             $added = \DB::table('datapasien')
         	->insert(['nama_pasien'=>$request->nama_pasien,'email'=>$request->email, 'gambar'=> $dbsldr,'device_id'=>$request->device_id,'alamat'=>$request->alamat,
-        		'jenis_kelamin'=>$request->jenis_kelamin,'phone'=>$request->phone,'usia'=>$request->usia ]);
+        		'jenis_kelamin'=>$request->jenis_kelamin,'phone'=>$request->phone,'usia'=>$request->usia, 'id_dokter'=>$request->id_dokter ]);
             
    
     
         } else $request->session()->flash('alert-danger', 'Task failed');
         
-        
-        $datapasien=DataPasien::all();
+        $id=$request->id_dokter;
+        $datapasien = \DB::table('datapasien')
+        ->where('id_dokter',$id)->get();
         // dd($datapasien);
-        return view('backend.datapasien.indexpasien',compact('datapasien')); //'datapasien' ->ke view untuk nampilin
+       return view('backend.datapasien.indexpasien',compact('datapasien'));
     }
 
      public function editPasien($id)
@@ -80,22 +83,25 @@ class DataPasienController extends Controller
             $dataedit->usia = $request->usia;
             $dataedit->save();
             }
-       
-         $datapasien=DataPasien::all();
+        $id=$request->id_dokter;
+         $datapasien = \DB::table('datapasien')
+        ->where('id_dokter',$id)->get();
         // dd($datapasien);
-        return view('backend.datapasien.indexpasien',compact('datapasien')); //'datapasien' ->ke view untuk nampilin  
-    }
+       return view('backend.datapasien.indexpasien',compact('datapasien'));
+   }
 
-        public function deletePasien($id)
+        public function deletePasien($id,$id_dokter)
     {
         $delete = \DB::table('datapasien')
         ->where('id',$id)->delete();
         
         // $Materi = \DB::select('select m.*, b.id as id_b, b.bahasa from materi m LEFT JOIN bahasa b On m.id_bahasa = b.id ');
         // return view("backend.materi.indexMateri", compact('Materi'));
-        $datapasien=DataPasien::all();
+
+         $datapasien = \DB::table('datapasien')
+        ->where('id_dokter',$id_dokter)->get();
         // dd($datapasien);
-        return view('backend.datapasien.indexpasien',compact('datapasien')); //'datapasien' ->ke view untuk nampilin  
+       return view('backend.datapasien.indexpasien',compact('datapasien'));
     }
 
 }

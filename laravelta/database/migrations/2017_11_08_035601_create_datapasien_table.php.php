@@ -24,7 +24,7 @@ class CreateDatapasienTable extends Migration
             $table->string('jenis_kelamin');
             $table->string('phone');
             $table->string('usia');
-            $table->integer('id_dokter');
+            $table->integer('id_dokter')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

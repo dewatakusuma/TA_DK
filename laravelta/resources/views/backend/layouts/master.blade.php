@@ -46,7 +46,7 @@
 
     <!--Footer-->
     @include('backend.layouts.footer')
-    @yield('more-script')
+    
     <!--#Footer-->
 </body>
 
